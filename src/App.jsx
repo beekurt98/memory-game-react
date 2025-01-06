@@ -13,10 +13,10 @@ function App() {
     setGridSize(size);
     console.log(gridSize)
     const arr = []
-    for(let i = 1; i < size/2+1; i++) {
+    for (let i = 1; i < size / 2 + 1; i++) {
       arr.push(i);
     }
-    const randomizedArray = [...arr.sort(() => Math.random() - 0.5), ...arr.sort(() => Math.random() - 0.5)] 
+    const randomizedArray = [...arr.sort(() => Math.random() - 0.5), ...arr.sort(() => Math.random() - 0.5)]
     setArr(randomizedArray)
   }
 
@@ -25,22 +25,32 @@ function App() {
     setGameOn(true)
   }
 
+  const body = document.querySelector("body")
+  // body.classList.add("dark-bg")
+
   return (
     <>
-    <header>
-      <h1>memory</h1>
-      <div className="btns">
-        <button className="guide-btn restart-btn">Restart</button>
-        <button className="guide-btn new-game-btn">New Game</button>
-      </div>
-    </header>
-    <div className="main-cont">
+
       {
-        gameOn ? <GameScreen numArr={numArr} gridSize={gridSize} />
-        : <MainScreen handleSize={handleSize} initializeGame={initializeGame} />
+        gameOn
+          ? <>
+            <header>
+              <h1>memory</h1>
+              <div className="btns">
+                <button className="guide-btn restart-btn">Restart</button>
+                <button className="guide-btn new-game-btn">New Game</button>
+              </div>
+            </header>
+            <div className="main-cont">
+              <GameScreen numArr={numArr} gridSize={gridSize} />
+            </div>
+          </>
+          : <>
+          <header><h1>memory</h1></header>
+          <MainScreen handleSize={handleSize} initializeGame={initializeGame} />
+          </>
       }
-    </div>
-    
+
     </>
   )
 }
@@ -48,11 +58,11 @@ function App() {
 function MainScreen({ handleSize, initializeGame }) {
 
   return (
-    <div>
-      <div>Select Themes: <button>Numbers</button><button>Symbols</button></div>
-      <div>Number of Players: <button>1</button><button>2</button><button>3</button><button>4</button></div>
-      <div>Grid Size: <button value={16} onClick={handleSize}>4x4</button><button value={36} onClick={handleSize}>6x6</button></div>
-      <button onClick={initializeGame}>Start Game</button>
+    <div className='select-screen'>
+      <p>Select Theme</p><div><button>Numbers</button><button>Symbols</button></div>
+      <p>Number of Players</p><div><button>1</button><button>2</button><button>3</button><button>4</button></div>
+      <p>Grid Size</p><div><button value={16} onClick={handleSize}>4x4</button><button value={36} onClick={handleSize}>6x6</button></div>
+      <div className='orange-start-btn'><button onClick={initializeGame}>Start Game</button></div>
     </div>
   )
 }
@@ -61,10 +71,10 @@ function GameScreen({ numArr, gridSize }) {
   const [move, setMove] = useState(0);
   const [score, setScore] = useState(0);
   const [pastMove, setPastMove] = useState(null);
-  const [currBtns, setCurrBtns] = useState([]); 
-  const [matchedBtns, setMatchedBtns] = useState([]); 
+  const [currBtns, setCurrBtns] = useState([]);
+  const [matchedBtns, setMatchedBtns] = useState([]);
 
-  if(matchedBtns.length == numArr.length) {
+  if (matchedBtns.length == numArr.length) {
     console.log("game over!")
   }
 
@@ -84,14 +94,14 @@ function GameScreen({ numArr, gridSize }) {
 
     if (currBtns.length === 0) {
       setPastMove(value);
-      setCurrBtns([index]); 
+      setCurrBtns([index]);
     } else if (currBtns.length === 1) {
-      setCurrBtns([...currBtns, index]); 
-      setMove((prevMove) => prevMove + 1); 
+      setCurrBtns([...currBtns, index]);
+      setMove((prevMove) => prevMove + 1);
 
       if (pastMove === value) {
         setScore((prevScore) => prevScore + 1);
-        setMatchedBtns((prevMatched) => [...prevMatched, ...currBtns, index]); 
+        setMatchedBtns((prevMatched) => [...prevMatched, ...currBtns, index]);
       }
 
       setTimeout(() => {
@@ -109,11 +119,11 @@ function GameScreen({ numArr, gridSize }) {
             value={num}
             onClick={(e) => handleMove(e, index)}
             className={
-              matchedBtns.includes(index) 
+              matchedBtns.includes(index)
                 ? "num-btn clicked matched-btns"
-                : currBtns.includes(index) 
-                ? "num-btn clicked currently-matched"
-                : "num-btn hide"
+                : currBtns.includes(index)
+                  ? "num-btn clicked currently-matched"
+                  : "num-btn hide"
             }
             key={index}
           >
@@ -122,7 +132,7 @@ function GameScreen({ numArr, gridSize }) {
         ))}
       </div>
       <div className="user-info">
-        <div className='time-info'><p>Time</p> <p className='info-var'>{}</p></div>
+        <div className='time-info'><p>Time</p> <p className='info-var'>{ }</p></div>
         <div className='move-info'><p>Moves</p> <p className='info-var'>{move}</p></div>
         {/* <p>Score: {score}</p> */}
       </div>
