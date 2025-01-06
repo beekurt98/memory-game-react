@@ -1,0 +1,43 @@
+:root {
+  --gray: #BCCED9;
+  --orange: #FDA214;
+  --navy: #304859;
+  --light: #FCFCFC;
+}
+
+body {
+  font-family: 'Atkinson Hyperlegible';
+}
+
+.num-btn {
+  border-radius: 50%;
+  z-index: 1;
+  /* font-size: 0; */
+  width: 100px;
+  height: 100px;
+  border: none;
+  color: var(--light);
+  font-family: 'Atkinson Hyperlegible';
+  font-weight: bolder;
+}
+
+.hide {
+  font-size: 0;
+  background-color: var(--navy);
+}
+
+.num-btn-cont {
+  gap: 10px;
+}
+
+.clicked {
+   font-size: 26px;
+}
+
+.matched-btns {
+  background: var(--gray);
+}
+
+.currently-matched {
+  background-color: var(--orange);
+}
