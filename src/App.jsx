@@ -27,11 +27,20 @@ function App() {
 
   return (
     <>
-    <h1>memory</h1>
-    {
-      gameOn ? <GameScreen numArr={numArr} gridSize={gridSize} />
-      : <MainScreen handleSize={handleSize} initializeGame={initializeGame} />
-    }
+    <header>
+      <h1>memory</h1>
+      <div className="btns">
+        <button className="guide-btn restart-btn">Restart</button>
+        <button className="guide-btn new-game-btn">New Game</button>
+      </div>
+    </header>
+    <div className="main-cont">
+      {
+        gameOn ? <GameScreen numArr={numArr} gridSize={gridSize} />
+        : <MainScreen handleSize={handleSize} initializeGame={initializeGame} />
+      }
+    </div>
+    
     </>
   )
 }
@@ -112,9 +121,10 @@ function GameScreen({ numArr, gridSize }) {
           </button>
         ))}
       </div>
-      <div>
-        <p>Moves: {move}</p>
-        <p>Score: {score}</p>
+      <div className="user-info">
+        <div className='time-info'><p>Time</p> <p className='info-var'>{}</p></div>
+        <div className='move-info'><p>Moves</p> <p className='info-var'>{move}</p></div>
+        {/* <p>Score: {score}</p> */}
       </div>
     </>
   );

@@ -3,10 +3,74 @@
   --orange: #FDA214;
   --navy: #304859;
   --light: #FCFCFC;
+  --darkgray: #7191A5;
+  --lightgray: #DFE7EC;
 }
 
 body {
   font-family: 'Atkinson Hyperlegible';
+}
+
+header {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.guide-btn {
+  height: 50px;
+  border-radius: 26px;
+  width: 150px;
+  font-size: 1.1rem;
+  font-family: 'Atkinson Hyperlegible';
+  font-weight: bolder;
+  border: none;
+}
+
+.restart-btn {
+  background-color: var(--orange);
+  color: var(--light);
+}
+
+.new-game-btn {
+  background-color: var(--gray);
+  color: var(--navy);
+}
+
+.main-cont {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.time-info, .move-info {
+  width: 25%;
+  background-color: var(--lightgray);
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--darkgray);
+  font-weight: bold;
+  border-radius: 10px;
+  .info-var {
+    font-size: 1.5rem;
+    color: var(--navy);
+  }
 }
 
 .num-btn {
